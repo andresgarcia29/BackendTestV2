@@ -1,0 +1,19 @@
+{
+  "name": "backendtestv2",
+  "version": "1.0.0",
+  "description": "This is a test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andresgarcia29/BackendTestV2.git"
+  },
+  "author": "José Andrés García Manzo <jose.andres.gm29@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andresgarcia29/BackendTestV2/issues"
+  },
+  "homepage": "https://github.com/andresgarcia29/BackendTestV2#readme"
+}
