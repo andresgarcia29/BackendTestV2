@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('express');
 const morgan = require('morgan');
-const sequilize = require('sequelize');
+const models = require('./database/models/index');
 const cors = require('cors');
 const passport = require('passport');
 
@@ -17,6 +17,8 @@ app.use(bodyParser.json());
 
 app.use(morgan('dev'));
 
-app.listen(app.get('port'), () => {
-  console.log("API running");
+models.sequelize.sync().then(() => {
+  app.listen(app.get('port'), () => {
+    console.log(`API running on ${app.get('port')} port`);
+  });
 });
