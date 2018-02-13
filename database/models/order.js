@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define('Order', {
     user: DataTypes.INTEGER,
     totally: DataTypes.DOUBLE,
-    payed: DataTypes.BOOLEAN
+    payed: DataTypes.BOOLEAN,
   }, {
     classMethods: {
       associate: (models) => {

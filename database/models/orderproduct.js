@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const OrderProduct = sequelize.define('OrderProduct', {
     orderOd: DataTypes.INTEGER,
-    productId: DataTypes.INTEGER
+    productId: DataTypes.INTEGER,
   }, {
     classMethods: {
       associate: (models) => {
