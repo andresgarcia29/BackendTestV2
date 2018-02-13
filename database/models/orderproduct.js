@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: (models) => {
-        OrderProduct.belongsTo(models.Orders, { as: 'order_product', foreignKey: 'orderId' });
-        OrderProduct.belongsTo(models.Products, { as: 'product_order', foreignKey: 'productId' });
+        OrderProduct.belongsTo(models.Order, { as: 'order_product', foreignKey: 'orderId' });
+        OrderProduct.belongsTo(models.Product, { as: 'product_order', foreignKey: 'productId' });
       },
     },
   });

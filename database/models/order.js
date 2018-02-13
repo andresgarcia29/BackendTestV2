@@ -1,6 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define('Order', {
-    user: DataTypes.INTEGER,
+    user: {
+      type: DataTypes.INTEGER,
+      foreignKey: true,
+    },
     totally: DataTypes.DOUBLE,
     payed: DataTypes.BOOLEAN,
   }, {

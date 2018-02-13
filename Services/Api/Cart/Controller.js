@@ -6,7 +6,7 @@ module.exports = {
     if (!req.body) return res.status(200).send({ message: 'Empty data' });
     req.body.user = req.user.id;
     req.body.createdAt = new Date(Date.now());
-    await models.Orders.create(req.body).then((order) => {
+    await models.Order.create(req.body).then((order) => {
       res.send({
         data: order,
       });
@@ -18,7 +18,7 @@ module.exports = {
   },
   viewOne: async (req, res) => {
     if (!req.params._id) return res.status(200).send({ message: 'Empty data' });
-    await models.Orders.findById(req.params._id, {
+    await models.Order.findById(req.params._id, {
       include: [
         {
           model: models.User,
@@ -28,7 +28,7 @@ module.exports = {
           model: models.OrderProduct,
           as: 'product_order',
           include: [{
-            model: models.Products,
+            model: models.Product,
             as: 'product_order',
           }],
         },
@@ -38,9 +38,9 @@ module.exports = {
       res.status(200).send({
         data: order,
       });
-    }).catch(() => {
+    }).catch((err) => {
       res.status(500).send({
-        message: 'Error',
+        message: `Error ${err}`,
       });
     });
   },
@@ -51,13 +51,13 @@ module.exports = {
       },
       include: [
         {
-          model: models.Orders,
+          model: models.Order,
           as: 'orders',
           include: [{
             model: models.OrderProduct,
             as: 'product_order',
             include: [{
-              model: models.Products,
+              model: models.Product,
               as: 'product_order',
             }],
           }],
@@ -80,13 +80,10 @@ module.exports = {
       orderId: req.params._id,
       productId: req.body.product,
     };
-    await models.Orders.findById(req.params._id).then((ord) => {
-      if (ord.user !== req.user.id) {
-        return false;
-      }
-    }).then(async (next) => {
-      if (!next) return res.status(200).send({ message: 'You are not the owner for this order' });
-      await models.Products.findById(body.productId).then((product) => {
+    await models.Order.findById(req.params._id).then((ord) => {
+      if (ord.user !== req.user.id) return res.status(200).send({ message: 'You are not the owner for this order' });
+    }).then(async () => {
+      await models.Product.findById(body.productId).then((product) => {
         if (!product) return res.status(200).send({ message: "This product doesn't exist" });
         models.OrderProduct.create(body).then(() => {
           res.status(200).send({
@@ -94,23 +91,23 @@ module.exports = {
           });
         }).catch((err) => {
           res.status(500).send({
-            message: err,
+            message: `Error ${err}`,
           });
         });
       }).catch((err) => {
         res.status(500).send({
-          message: err,
+          message: `Error ${err}`,
         });
       });
     }).catch((err) => {
       res.status(500).send({
-        message: err,
+        message: `Error ${err}`,
       });
     });
   },
   checkOut: async (req, res) => {
     if (!req.params._id) return res.status(200).send({ message: 'Empty data' });
-    await models.Orders.findById(req.params._id, {
+    await models.Order.findById(req.params._id, {
       include: [
         {
           model: models.User,
@@ -120,7 +117,7 @@ module.exports = {
           model: models.OrderProduct,
           as: 'product_order',
           include: [{
-            model: models.Products,
+            model: models.Product,
             as: 'product_order',
           }],
         },
