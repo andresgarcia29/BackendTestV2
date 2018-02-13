@@ -5,10 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     payed: DataTypes.BOOLEAN
   }, {
     classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
+      associate: (models) => {
+        Order.belongsTo(models.User, { as: 'users', foreignKey: 'user' });
+        Order.hasMany(models.OrderProduct, { as: 'product_order', foreignKey: 'orderId' });
+      },
+    },
   });
   return Order;
 };
