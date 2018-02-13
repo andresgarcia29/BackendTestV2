@@ -6,6 +6,8 @@ const cors = require('cors');
 const passport = require('passport');
 const Strategy = require('./config/Strategy');
 
+const userRouter = require('./Services/User/Routes');
+
 passport.use(Strategy);
 
 const app = express();
@@ -20,6 +22,8 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 
 app.use(morgan('dev'));
+
+app.use('/user', userRouter);
 
 models.sequelize.sync().then(() => {
   app.listen(app.get('port'), () => {
