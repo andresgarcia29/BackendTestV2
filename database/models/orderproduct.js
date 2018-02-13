@@ -4,10 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     productId: DataTypes.INTEGER
   }, {
     classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
+      associate: (models) => {
+        OrderProduct.belongsTo(models.Orders, { as: 'order_product', foreignKey: 'orderId' });
+        OrderProduct.belongsTo(models.Products, { as: 'product_order', foreignKey: 'productId' });
+      },
+    },
   });
   return OrderProduct;
 };
