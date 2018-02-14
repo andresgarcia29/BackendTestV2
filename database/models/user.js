@@ -14,11 +14,9 @@ module.exports = (sequelize, DataTypes) => {
         user.password = hash;
       },
     },
-    classMethods: {
-      associate: (models) => {
-        User.hasMany(models.Order, { as: 'orders', foreignKey: 'user' });
-      },
-    },
   });
+  User.associate = (models) => {
+    User.hasMany(models.Order, { as: 'orders', foreignKey: 'user' });
+  };
   return User;
 };
