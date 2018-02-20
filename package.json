@@ -4,7 +4,7 @@
   "description": "This is a test",
   "main": "index.js",
   "scripts": {
-    "test": "mocha Test/*.test.js",
+    "test": "mocha Test/unit/*/*.test.js",
     "dev": "nodemon index.js"
   },
   "repository": {
