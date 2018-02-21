@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     code: DataTypes.STRING,
   }, {
   });
-  Product.prototype.returnInstance = async function () {
+  Product.prototype.mapNeed = function () {
     return {
       code: this.code,
       price: this.price,

@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Order.prototype.checkOut = async function () {
     let products = await this.getItems();
-    products = products.map(product => product.returnInstance());
+    // products = products.map(product => product.mapNeed());
     const totally = checkOutFunction(products);
     this.totally = totally;
     return this.save();
