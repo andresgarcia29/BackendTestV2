@@ -5,33 +5,43 @@ const { Order, Product } = require('../../../database/models/');
 const mocks = require('../../Mocks/checkOut.mocks');
 const sandBox = sinon.createSandbox();
 const chaiAsPromised = require("chai-as-promised");
-
-const instanceMethods = Order.prototype;
 chai.use(chaiAsPromised);
+const expect = chai.expect;
+const assert = chai.assert;
+const instanceMethods = Order.prototype;
 chai.should();
 
 describe('#CheckOrderModel', () => {
-  it('Return a promise when I added a product in a order', () => {
+  it('Return a promise when I added a product in a order', async () => {
     beforeEach(() => {
       sandBox.restore();
-      
     });
+
     const order = sandBox.createStubInstance(Order);
     const product = sandBox.createStubInstance(Product);
 
     order.getItems.restore();
-    product.mapNeed.restore();
     order.save.restore();
-    
-    sandBox.stub(order, 'getItems').resolves(mocks.tryOne);
-    sandBox.stub(product, 'mapNeed').resolves(mocks.tryOne.map(e => { e.price, e.code }));
-    sandBox.stub(order, 'save').resolves();
+    product.mapNeed.restore();
 
-    instanceMethods
+    sandBox.stub(product, 'mapNeed').callsFake(function () {
+      return this
+    });
+    sandBox.stub(order, 'save').resolves();
+    sandBox.stub(order, 'getItems').resolves(
+      mocks.tryOne.map((i) => Object.assign({}, product, i))
+    );
+
+    await instanceMethods
       .checkOut.call(order)
       .should.be.fulfilled
       .then((result) => {
-        // Problems with this
+        console.log()
+        result.should.to.be.a('object');
+        result.items.should.to.be.an('array');
+        result.items[0].code.should.to.be.a('string');
+        result.items[0].price.should.to.be.a('number');
+        result.total.should.to.be.a('number');
       });
   });
 });

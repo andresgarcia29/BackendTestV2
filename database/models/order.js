@@ -16,10 +16,14 @@ module.exports = (sequelize, DataTypes) => {
   };
   Order.prototype.checkOut = async function () {
     let products = await this.getItems();
-    // products = products.map(product => product.mapNeed());
+    products = products.map(product => product.mapNeed());
     const totally = checkOutFunction(products);
     this.totally = totally;
-    return this.save();
+    await this.save();
+    return {
+      items: products,
+      total: totally,
+    };
   };
   return Order;
 };
