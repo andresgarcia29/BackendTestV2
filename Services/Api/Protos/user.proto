@@ -1,0 +1,45 @@
+syntax = "proto3"; //Specify proto3 version.
+
+package user;
+
+service UserControllerService {
+  rpc createUser (User) returns (User);
+  rpc signUpUser (SignUp) returns (User);
+  rpc signInUSer (SignIn) returns (Token);
+  rpc UpdateUSer (Update) returns (User);
+}
+
+message User {
+  int32 id = 1;
+  string email = 2;
+  string firstName = 3;
+  string lastName = 4;
+  string password = 5;
+}
+
+message SignUp {
+  string email = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string password = 4;
+  string repeatPassword = 5;
+}
+
+message SignIn {
+  string email = 1;
+  string password = 2;
+}
+
+message Token {
+  string token = 1;
+}
+
+message Update {
+  string email = 1;
+  string firstName = 2;
+  string lastName = 3;
+}
+
+message ChangePassword {
+  string password = 1;
+}

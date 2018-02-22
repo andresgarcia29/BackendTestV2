@@ -1,7 +1,7 @@
 const chai = require('chai');
-const getTotally = require('../../../Helper/checkOut');
+const getTotally = require('../../../Services/Helper/checkOut');
 const sinon = require('sinon');
-const { Order, Product } = require('../../../database/models/');
+const { Order, Product } = require('../../../Services/database/models');
 const mocks = require('../../Mocks/checkOut.mocks');
 const sandBox = sinon.createSandbox();
 const chaiAsPromised = require("chai-as-promised");

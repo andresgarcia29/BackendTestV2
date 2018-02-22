@@ -1,4 +1,4 @@
-const Disscount = require('../Services/Config/Disscount');
+const Disscount = require('../Config/Disscount');
 
 module.exports = (products) => {
   let totally = 0;

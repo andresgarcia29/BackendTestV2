@@ -1,0 +1,31 @@
+syntax = "proto3"; //Specify proto3 version.
+
+package order;
+
+service OrderControllerServie {
+  rpc createOrder (Order) returns (Order);
+  rpc addProduct (Product) returns (OrderProduct);
+  rpc getOrder (OrderId) returns (Order);
+}
+
+message OrderId { 
+  int32 id = 1;
+}
+
+message Order {
+  int32 id = 1;
+  int32 userid = 2;
+  bool payed = 3;
+  double totally = 4;
+}
+
+message Product {
+  string name = 1;
+  string code = 2;
+  int32 price = 3;
+}
+
+message OrderProduct {
+  int32 idProduct = 1;
+  int32 idOrder = 2;
+}
