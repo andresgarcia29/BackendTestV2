@@ -2,8 +2,8 @@ syntax = "proto3"; //Specify proto3 version.
 
 package order;
 
-service OrderControllerServie {
-  rpc createOrder (Order) returns (Order);
+service Order {
+  rpc createOrder (Order) returns (OrderId);
   rpc addProduct (Product) returns (OrderProduct);
   rpc getOrder (OrderId) returns (Order);
 }
@@ -12,7 +12,7 @@ message OrderId { 
   int32 id = 1;
 }
 
-message Order {
+message ResOrder {
   int32 id = 1;
   int32 userid = 2;
   bool payed = 3;

@@ -2,7 +2,7 @@ const mocha = require('mocha');
 const chai = require('chai');
 const assert = chai.assert;
 const expect = chai.expect;
-const getTotally = require('../../../Services/Helper/checkOut');
+const getTotally = require('../../../Services/user/Helper/checkOut');
 const mocks = require('../../Mocks/checkOut.mocks');
 
 describe('CheckOutHelper', () => {
