@@ -6,11 +6,16 @@ service Order {
   rpc createOrder (ReqOrder) returns (OrderId);
   rpc addProduct (ReqAddProduct) returns (ResOrder);
   rpc getOrder (OrderId) returns (ResOrder);
+  rpc checkOut (OrderId) returns (OrderTotally);
 }
 
 message ReqOrder {
   bool payed = 1;
   int32 user = 2;
+}
+
+message OrderTotally {
+  double totally = 1;
 }
 
 message OrderId { 
@@ -28,6 +33,7 @@ message ResOrder {
 message ReqAddProduct {
   int32 idOrder = 1;
   int32 idProduct = 2;
+  int32 qty = 3;
 }
 
 message OrderProduct {

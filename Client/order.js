@@ -10,12 +10,10 @@ const orderId = {
   id: 1,
 };
 
-const order = {
-};
-
 const addProduct = {
   idOrder: 1,
-  idProduct: 3,
+  idProduct: 2,
+  qty: 31,
 };
 
 const orderNew = {
@@ -48,7 +46,7 @@ client.addProduct(addProduct, (err, response) => {
 });
 
 
-// client.UpdateUser(userUpdate, (err, response) => {
+// client.checkOut(orderId, (err, response) => {
 //   if (!err) {
 //     console.log(response);
 //   } else {

@@ -8,10 +8,11 @@ module.exports = (sequelize, DataTypes) => {
   Product.associate = (models) => {
     Product.belongsToMany(models.Order, { through: 'OrderProduct', foreignKey: 'ProductId', as: 'items' });
   };
-  Product.prototype.mapNeed = async function () {
+  Product.prototype.mapNeed = function () {
     return {
       code: this.code,
       price: this.price,
+      qty: this.OrderProduct.dataValues.qty,
     };
   };
   return Product;

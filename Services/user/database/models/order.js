@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
   });
   Order.associate = (models) => {
     Order.belongsTo(models.User, { as: 'users', foreignKey: 'user' });
-    // Order.belongsToMany(models.Product, { through: 'OrderProduct', foreignKey: 'ProductId', as: 'items' });
   };
   Order.prototype.checkOut = async function () {
     let products = await this.getItems();

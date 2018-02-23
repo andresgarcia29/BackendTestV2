@@ -28,7 +28,7 @@ class OrderController {
       const getOneOrder = await Order.findById(call.request.idOrder);
       if (getOneOrder.dataValues.id === call.request.idOrder) {
         const getOneProduct = await Product.findById(call.request.idProduct);
-        await getOneOrder.addItem(getOneProduct);
+        await getOneOrder.addItem(getOneProduct, { through: { qty: call.request.qty } });
         const payload = {
           id: getOneOrder.dataValues.id,
           payed: getOneOrder.dataValues.payed,
@@ -43,9 +43,9 @@ class OrderController {
   }
   async checkOut(call, callback) {
     try {
-      const getOne = await Order.findById(call.request.id);
-      await getOne.checkOut();
-      callback(null, getOne);
+      let getOne = await Order.findById(call.request.id);
+      getOne = await getOne.checkOut();
+      callback(null, getOne.total);
     } catch (error) {
       callback(error);
     }
