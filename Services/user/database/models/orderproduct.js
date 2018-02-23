@@ -1,12 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
   const OrderProduct = sequelize.define('OrderProduct', {
-    orderId: DataTypes.INTEGER,
-    productId: DataTypes.INTEGER,
+    OrderId: DataTypes.INTEGER,
+    ProductId: DataTypes.INTEGER,
   }, {
   });
-  // OrderProduct.associate = (models) => {
-  //   OrderProduct.belongsTo(models.Order, { as: 'order_product', foreignKey: 'orderId' });
-  //   OrderProduct.belongsTo(models.Product, { as: 'product_order', foreignKey: 'productId' });
-  // };
+  OrderProduct.associate = (models) => {
+    models.Order.belongsToMany(models.Product, { through: 'OrderProduct', as: 'items', foreignKey: 'OrderId' });
+    models.Product.belongsToMany(models.Order, { through: 'OrderProduct', as: 'orderProduct', foreignKey: 'ProductId' });
+  };
   return OrderProduct;
 };

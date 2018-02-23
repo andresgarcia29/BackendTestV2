@@ -3,9 +3,14 @@ syntax = "proto3"; //Specify proto3 version.
 package order;
 
 service Order {
-  rpc createOrder (Order) returns (OrderId);
-  rpc addProduct (Product) returns (OrderProduct);
-  rpc getOrder (OrderId) returns (Order);
+  rpc createOrder (ReqOrder) returns (OrderId);
+  rpc addProduct (ReqAddProduct) returns (ResOrder);
+  rpc getOrder (OrderId) returns (ResOrder);
+}
+
+message ReqOrder {
+  bool payed = 1;
+  int32 user = 2;
 }
 
 message OrderId { 
@@ -14,18 +19,18 @@ message OrderId { 
 
 message ResOrder {
   int32 id = 1;
-  int32 userid = 2;
-  bool payed = 3;
+  bool payed = 2;
+  int32 userId = 3;
   double totally = 4;
 }
 
-message Product {
-  string name = 1;
-  string code = 2;
-  int32 price = 3;
+
+message ReqAddProduct {
+  int32 idOrder = 1;
+  int32 idProduct = 2;
 }
 
 message OrderProduct {
-  int32 idProduct = 1;
-  int32 idOrder = 2;
+  int32 idOrder = 1;
+  int32 idProduct = 2;
 }

@@ -3,8 +3,8 @@ const { Order, Product } = require('../../database/models/');
 class OrderController {
   async createOrder(call, callback) {
     try {
-      const newOrder = await Order.create({});
-      callback(null, newOrder);
+      const newOrder = await Order.create(call.request);
+      callback(null, newOrder.dataValues.id);
     } catch (error) {
       callback(error);
     }
@@ -12,17 +12,31 @@ class OrderController {
   async getOrder(call, callback) {
     try {
       const getOne = await Order.findById(call.request.id);
-      callback(null, getOne);
+      const payload = {
+        id: getOne.dataValues.id,
+        payed: getOne.dataValues.payed,
+        userId: getOne.dataValues.user,
+        totally: getOne.dataValues.totally || -1,
+      };
+      callback(null, payload);
     } catch (error) {
       callback(error);
     }
   }
   async addProduct(call, callback) {
     try {
-      const getOne = await Order.findById(call.request.id);
-      let getOneProduct = await Product.findById(call.request.product);
-      getOneProduct = await getOne.addItems(getOneProduct.id);
-      callback(null, getOneProduct);
+      const getOneOrder = await Order.findById(call.request.idOrder);
+      if (getOneOrder.dataValues.id === call.request.idOrder) {
+        const getOneProduct = await Product.findById(call.request.idProduct);
+        await getOneOrder.addItem(getOneProduct);
+        const payload = {
+          id: getOneOrder.dataValues.id,
+          payed: getOneOrder.dataValues.payed,
+          userId: getOneOrder.dataValues.user,
+          totally: getOneOrder.dataValues.totally || -1,
+        };
+        callback(null, payload);
+      }
     } catch (error) {
       callback(error);
     }
