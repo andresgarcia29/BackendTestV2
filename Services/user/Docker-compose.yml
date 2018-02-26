@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+  node:
+    build:
+      context: .
+      args:
+        NODE_ENV=development
+    command: ../node_modules/.bin/nodemon --inspect=0.0.0.0:9229
+    ports:
+      "50050:50050"
+    volumes:
+      .:/opt/app:delegated
+      notused:/opt/app/node_modules
+    environment:
+      NODE_ENV=development
+    deploy:
+      mode: replicated
+      replicas: 2
+
+  db:
+    image: postgres
+    ports:
+      "5432:5432"
+    environment:
+      DEBUG=false
+
+      DB_USER=postgres
+      DB_PASS=
+      DB_NAME=database_development_10
+
+    volumes:
+      /srv/docker/postgresql:/var/lib/postgresql
