@@ -7,10 +7,10 @@ const proto = grpc.load({ root: protoPath, file: 'user.proto' }).user;
 const client = new proto.User('localhost:50050', grpc.credentials.createInsecure());
 
 const user = {
-  email: 'jose.andres.gm29@gmaill.com',
-  firstName: 'Andres',
-  lastName: 'Garcia',
-  password: 'holamundo',
+  email: 'fsdfsdf',
+  firstName: 'sdfsdf',
+  lastName: 'sdfsdf',
+  password: 'sdfsf',
 };
 
 const userUpdate = {
@@ -24,13 +24,13 @@ const userId = {
   id: 15,
 };
 
-// client.createUser(user, (err, response) => {
-//   if (!err) {
-//     console.log(response);
-//   } else {
-//     console.log(err);
-//   }
-// });
+client.createUser(user, (err, response) => {
+  if (!err) {
+    console.log(response);
+  } else {
+    console.log(err);
+  }
+});
 
 // client.getUser(userId, (err, response) => {
 //   if (!err) {

@@ -7,7 +7,7 @@ ENV NODE_ENV $NODE_ENV
 
 ARG PORT=50050
 ENV PORT $PORT
-EXPOSE $PORT
+EXPOSE $PORT 80 5858 9229
 
 #HEALTHCHECK CMD curl -fs http://localhost:$PORT/healthz || exit 1
 
@@ -19,4 +19,4 @@ ENV PATH /opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY . /opt/app
 
-CMD [ "node", "index.js" ]
+CMD [ "node", "app.js" ]
