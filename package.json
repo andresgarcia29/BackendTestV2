@@ -1,37 +1,28 @@
 {
-  "name": "backendtestv2",
+  "name": "backendtest",
   "version": "1.0.0",
-  "description": "This is a test",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha Test/unit/*/*.test.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/andresgarcia29/BackendTestV2.git"
   },
-  "author": "José Andrés García Manzo <jose.andres.gm29@gmail.com>",
-  "license": "MIT",
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/andresgarcia29/BackendTestV2/issues"
   },
   "homepage": "https://github.com/andresgarcia29/BackendTestV2#readme",
-  "dependencies": {
-    "bcrypt": "^1.0.3",
+  "devDependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.2",
-    "cors": "^2.8.4",
-    "eslint": "^4.17.0",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "express": "^4.16.2",
-    "jsonwebtoken": "^8.1.1",
-    "morgan": "^1.9.0",
-    "passport": "^0.4.0",
-    "passport-http": "^0.3.0",
-    "passport-jwt": "^3.0.1",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^5.0.1",
     "pg": "^7.4.1",
-    "pg-hstore": "^2.3.2",
-    "sequelize": "^4.33.3"
+    "sequelize": "^4.35.1",
+    "sinon": "^4.4.2"
   }
 }

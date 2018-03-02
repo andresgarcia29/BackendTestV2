@@ -1,0 +1,52 @@
+syntax = "proto3"; //Specify proto3 version.
+
+package user;
+
+service User {
+  rpc createUser (ReqUser) returns (ResUser);
+  rpc getUser (idUser) returns (ResUser);
+  rpc UpdateUser (ResUser) returns (ResUser);
+  // rpc signUpUser (SignUp) returns (ResUser);
+  // rpc signInUSer (SignIn) returns (Token);
+}
+
+message ReqUser {
+  string email =  1;
+  string firstName = 2;
+  string lastName = 3;
+  string password = 4;
+}
+
+message ResUser {
+  int32 id = 1;
+  string email =  2;
+  string firstName = 3;
+  string lastName = 4;
+}
+
+message SignUp {
+  string email = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string password = 4;
+  string repeatPassword = 5;
+}
+
+message SignIn {
+  string email = 1;
+  string password = 2;
+}
+
+message Token {
+  string token = 1;
+}
+
+message Update {
+  string email = 1;
+  string firstName = 2;
+  string lastName = 3;
+}
+
+message idUser {
+  int32 id = 1;
+}

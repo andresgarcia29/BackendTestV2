@@ -2,15 +2,10 @@ const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
+    password: DataTypes.STRING,
+    email: DataTypes.STRING,
   }, {
     hooks: {
       beforeCreate: (user) => {
@@ -20,5 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   });
+  User.associate = (models) => {
+    User.hasMany(models.Order, { as: 'orders', foreignKey: 'user' });
+  };
   return User;
 };
