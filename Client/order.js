@@ -21,13 +21,13 @@ const orderNew = {
   user: 3,
 };
 
-// client.createOrder(orderNew, (err, response) => {
-//   if (!err) {
-//     console.log(response);
-//   } else {
-//     console.log(err);
-//   }
-// });
+client.createOrder(orderNew, (err, response) => {
+  if (!err) {
+    console.log(response);
+  } else {
+    console.log(err);
+  }
+});
 
 // client.getOrder(orderId, (err, response) => {
 //   if (!err) {
@@ -37,13 +37,13 @@ const orderNew = {
 //   }
 // });
 
-client.addProduct(addProduct, (err, response) => {
-  if (!err) {
-    console.log(response);
-  } else {
-    console.log(err);
-  }
-});
+// client.addProduct(addProduct, (err, response) => {
+//   if (!err) {
+//     console.log(response);
+//   } else {
+//     console.log(err);
+//   }
+// });
 
 
 // client.checkOut(orderId, (err, response) => {
