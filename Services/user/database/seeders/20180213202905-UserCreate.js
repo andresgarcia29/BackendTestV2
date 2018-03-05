@@ -4,22 +4,22 @@ module.exports = {
       code: 'pants',
       name: 'Pants',
       price: 5,
-      createdAt: new Date(Date.now()),
-      updatedAt: new Date(Date.now()),
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     {
       code: 'tshirt',
       name: 'T-Shirt',
       price: 20,
-      createdAt: new Date(Date.now()),
-      updatedAt: new Date(Date.now()),
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     {
       code: 'hat',
       name: 'hat',
       price: 7.5,
-      createdAt: new Date(Date.now()),
-      updatedAt: new Date(Date.now()),
+      createdAt: new Date(),
+      updatedAt: new Date(),
     }], {});
   },
 

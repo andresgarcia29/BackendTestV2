@@ -31,7 +31,7 @@ class UserController {
   }
   async UpdateUser(call, callback) {
     try {
-      await User.upsert(call.request);
+      await User.update(call.request);
       const getUserFunction = await User.findById(call.request.id);
       const payload = {
         id: getUserFunction.dataValues.id,

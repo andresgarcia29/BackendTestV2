@@ -17,7 +17,6 @@ describe('Test to OrderController', async () => {
     sandBox.restore();
   });
 
-
   it('Should create a new order', async () => {
     const callback = sandBox.spy();
     sandBox.stub(Order, 'create').resolves(mocks.orderCreate);
@@ -94,5 +93,4 @@ describe('Test to OrderController', async () => {
         assert(callback.calledOn);
       });
   });
-
 });

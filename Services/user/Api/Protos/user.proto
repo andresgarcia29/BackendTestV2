@@ -6,8 +6,6 @@ service User {
   rpc createUser (ReqUser) returns (ResUser);
   rpc getUser (idUser) returns (ResUser);
   rpc UpdateUser (ResUser) returns (ResUser);
-  // rpc signUpUser (SignUp) returns (ResUser);
-  // rpc signInUSer (SignIn) returns (Token);
 }
 
 message ReqUser {
