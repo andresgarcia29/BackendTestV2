@@ -4,10 +4,8 @@ package user;
 
 service User {
   rpc createUser (ReqUser) returns (ResUser);
-  rpc getUser (idUser) returns (ResUser);
+  rpc getUser (userId) returns (ResUser);
   rpc UpdateUser (ResUser) returns (ResUser);
-  // rpc signUpUser (SignUp) returns (ResUser);
-  // rpc signInUSer (SignIn) returns (Token);
 }
 
 message ReqUser {
@@ -22,6 +20,7 @@ message ResUser {
   string email =  2;
   string firstName = 3;
   string lastName = 4;
+  string password = 5;
 }
 
 message SignUp {
@@ -47,6 +46,6 @@ message Update {
   string lastName = 3;
 }
 
-message idUser {
+message userId {
   int32 id = 1;
 }

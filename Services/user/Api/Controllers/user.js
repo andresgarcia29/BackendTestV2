@@ -9,6 +9,7 @@ class UserController {
         email: newUser.dataValues.email,
         firstName: newUser.dataValues.firstName,
         lastName: newUser.dataValues.lastName,
+        password: newUser.dataValues.password
       };
       callback(null, payload);
     } catch (error) {
@@ -23,6 +24,7 @@ class UserController {
         email: getUser.dataValues.email,
         firstName: getUser.dataValues.firstName,
         lastName: getUser.dataValues.lastName,
+        password: getUser.dataValues.password
       };
       callback(null, payload);
     } catch (error) {
@@ -31,13 +33,14 @@ class UserController {
   }
   async UpdateUser(call, callback) {
     try {
-      await User.upsert(call.request);
+      await User.update(call.request);
       const getUserFunction = await User.findById(call.request.id);
       const payload = {
         id: getUserFunction.dataValues.id,
         email: getUserFunction.dataValues.email,
         firstName: getUserFunction.dataValues.firstName,
         lastName: getUserFunction.dataValues.lastName,
+        password: getUser.dataValues.password
       };
       callback(null, payload);
     } catch (error) {

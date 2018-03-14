@@ -29,7 +29,6 @@ message ResOrder {
   double totally = 4;
 }
 
-
 message ReqAddProduct {
   int32 idOrder = 1;
   int32 idProduct = 2;
