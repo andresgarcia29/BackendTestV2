@@ -9,6 +9,7 @@ class UserController {
         email: newUser.dataValues.email,
         firstName: newUser.dataValues.firstName,
         lastName: newUser.dataValues.lastName,
+        password: newUser.dataValues.password
       };
       callback(null, payload);
     } catch (error) {
@@ -23,6 +24,7 @@ class UserController {
         email: getUser.dataValues.email,
         firstName: getUser.dataValues.firstName,
         lastName: getUser.dataValues.lastName,
+        password: getUser.dataValues.password
       };
       callback(null, payload);
     } catch (error) {
@@ -38,6 +40,7 @@ class UserController {
         email: getUserFunction.dataValues.email,
         firstName: getUserFunction.dataValues.firstName,
         lastName: getUserFunction.dataValues.lastName,
+        password: getUser.dataValues.password
       };
       callback(null, payload);
     } catch (error) {

@@ -1,5 +1,5 @@
-const { createOrder } = require('../../../Services/user/Api/Controllers/order');
-const OrderController = require('../../../Services/user/Api/Controllers/order');
+const { createOrder } = require('../../../Api/Controllers/order');
+const OrderController = require('../../../Api/Controllers/order');
 const chai = require('chai');
 const sinon = require('sinon');
 const sandBox = sinon.createSandbox();
@@ -7,7 +7,7 @@ const chaiAsPromised = require("chai-as-promised");
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 const assert = chai.assert;
-const { Order, Product } = require('../../../Services/user/database/models/');
+const { Order, Product } = require('../../../database/models');
 const mocks = require('../../Mocks/controllers/order.controller');
 chai.should();
 
@@ -23,9 +23,9 @@ describe('Test to OrderController', async () => {
     return OrderController.createOrder(mocks.orderCreateCall, callback)
     .should.be.fulfilled
     .then(() => {
-      assert(callback.calledOnce);
-      expect(callback.args[0][0]).to.be.a('null');
-      expect(callback.args[0][1]).to.be.a('number');
+      Order.create.calledOnceWith(mocks.orderCreate);
+      callback.calledOnce;
+      callback.args[0][1].should.to.be.a('number');
     });
   });
 
@@ -35,8 +35,8 @@ describe('Test to OrderController', async () => {
     return OrderController.createOrder(mocks.orderCreateRejected, callback)
       .should.be.fulfilled
       .then(() => {
-        expect(callback.args[0]).to.be.a('array');
-        assert(callback.calledOnce);
+        callback.args[0].should.to.be.a('array');
+        callback.calledOnce;
       });
   });
 
@@ -47,12 +47,14 @@ describe('Test to OrderController', async () => {
     return OrderController.addProduct(mocks.addProductRequest, callback)
     .should.be.fulfilled
     .then(() => {
-      expect(callback.args[0][1]).to.be.an('object');
-      expect(callback.args[0][1].id).to.be.a('number');
-      expect(callback.args[0][1].payed).to.be.a('boolean');
-      expect(callback.args[0][1].userId).to.be.a('number');
-      expect(callback.args[0][1].totally).to.be.a('number');
-      assert(callback.calledOn);
+      Order.findById.calledOnceWith(mocks.addProductOrderOrder);
+      Product.findById.calledOnceWith(mocks.addProductOrderProduct);
+      callback.args[0][1].should.to.be.an('object');
+      callback.args[0][1].id.should.to.be.a('number');
+      callback.args[0][1].payed.should.to.be.a('boolean');
+      callback.args[0][1].userId.should.to.be.a('number');
+      callback.args[0][1].totally.should.to.be.a('number');
+      callback.calledOn;
     });
   });
 
@@ -63,8 +65,8 @@ describe('Test to OrderController', async () => {
     return OrderController.addProduct(mocks.addProductRequest, callback)
       .should.be.fulfilled
       .then(() => {
-        expect(callback.args[0]).to.be.a('array');
-        assert(callback.calledOn);
+        callback.args[0].should.to.be.a('array');
+        callback.calledOn;
       });
   });
 
@@ -74,12 +76,12 @@ describe('Test to OrderController', async () => {
     return OrderController.getOrder({request: { id: 1 }}, callback)
     .should.be.fulfilled
     .then(() => {
-      expect(callback.args[0][1]).to.be.an('object');
-      expect(callback.args[0][1].id).to.be.a('number');
-      expect(callback.args[0][1].payed).to.be.a('boolean');
-      expect(callback.args[0][1].userId).to.be.a('number');
-      expect(callback.args[0][1].totally).to.be.a('number');
-      assert(callback.calledOn);
+      callback.args[0][1].should.to.be.an('object');
+      callback.args[0][1].id.should.to.be.a('number');
+      callback.args[0][1].payed.should.to.be.a('boolean');
+      callback.args[0][1].userId.should.to.be.a('number');
+      callback.args[0][1].totally.should.to.be.a('number');
+      callback.calledOn;
     });
   });
 
@@ -89,8 +91,8 @@ describe('Test to OrderController', async () => {
     return OrderController.getOrder({ request: {  id: 1 } }, callback)
       .should.be.fulfilled
       .then(() => {
-        expect(callback.args[0]).to.be.a('array');
-        assert(callback.calledOn);
+        callback.args[0].should.to.be.a('array');
+        callback.calledOn;
       });
   });
 });

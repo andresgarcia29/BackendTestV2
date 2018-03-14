@@ -9,14 +9,16 @@ ARG PORT=50050
 ENV PORT $PORT
 EXPOSE $PORT 80 5858 9229
 
-#HEALTHCHECK CMD curl -fs http://localhost:$PORT/healthz || exit 1
-
 WORKDIR /opt
-COPY package.json package-lock.json* ./
+COPY ./Services/user/package.json ./Services/user/package-lock.json* ./
 RUN npm install && npm cache clean --force
 ENV PATH /opt/node_modules/.bin:$PATH
 
 WORKDIR /opt/app
-COPY . /opt/app
+COPY ./var /opt/app
+COPY ./Services/user /opt/app
 
-CMD [ "node", "app.js" ]
+RUN chmod +x waiting.sh
+RUN chmod +x test.sh
+
+ENTRYPOINT [ "./waiting.sh" ]

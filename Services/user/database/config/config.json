@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": null,
-    "database": "database_development_10",
+    "database": "database_development",
     "host": "db",
     "dialect": "postgres"
   },
@@ -10,7 +10,7 @@
     "username": "postgres",
     "password": null,
     "database": "database_test",
-    "host": "localhost",
+    "host": "db",
     "dialect": "postgres"
   },
   "production": {
